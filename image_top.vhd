@@ -60,7 +60,7 @@ begin
             addr => address
         );
 
-    Img: entity picture
+    Img: component picture
         port map(
             clka => clk,
             addra => address,
