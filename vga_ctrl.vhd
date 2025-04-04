@@ -20,12 +20,12 @@ begin
         if rising_edge(clk) then
             if clk_en = '1' then
                 hcount_temp <= std_logic_vector(unsigned(hcount_temp) + 1);
-                 if hcount_temp = std_logic_vector(800) then
+                 if unsigned(hcount_temp) = 800 then
                 hcount_temp <= (others => '0');
             end if;
-            if hcount_temp = std_logic_vector(0) then
+            if unsigned(hcount_temp) = 0 then
                 vcount_temp <= std_logic_vector(unsigned(vcount_temp) + 1);
-                if vcount_temp = std_logic_vector(525) then
+                if unsigned(vcount_temp) = 525 then
                     hcount_temp <= (others => '0');
                     end if;
             end if;
