@@ -21,20 +21,19 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if VS = '0' then
-                    addr_temp <= (others => '0');
-                end if;
-            if (clk_en = '1') and (vid = '1') then
-                if unsigned(hcount) < 480 then
+            if vs = '0' then
+                addr_temp <= (others => '0');
+            else
+                if ((clk_en = '1') and (vid = '1') and (unsigned(hcount) < 480)) then
                     addr_temp <= std_logic_vector(unsigned(addr_temp) + 1);
                     R_sig <= pxl_sig(7 downto 5) & "00";
                     B_sig <= pxl_sig(1 downto 0) & "000";
                     G_sig <= pxl_sig(4 downto 2) & "000";
+                else
+                    R_sig <= (others => '0');
+                    B_sig <= (others => '0');
+                    G_sig <= (others => '0');
                 end if;
-            else
-                R_sig <= (others => '0');
-                B_sig <= (others => '0');
-                G_sig <= (others => '0');
             end if;
         end if;
     end process;
